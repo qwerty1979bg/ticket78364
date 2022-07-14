@@ -26,6 +26,17 @@ module "lambda_function_existing_package_local" {
 resource "local_file" "foo" {
     source  = data.archive_file.periodically_invalidate_cache.output_path
     filename = "${data.archive_file.periodically_invalidate_cache.output_sha}-${data.archive_file.periodically_invalidate_cache.output_path}"
+
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      all
+    ]
+  }
+}
+
+  
 }  
   
 output "test1" {
