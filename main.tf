@@ -20,7 +20,7 @@ module "lambda_function_existing_package_local" {
   runtime       = "python3.8"
 
   create_package         = false
-  local_existing_package = concat(data.archive_file.periodically_invalidate_cache.output_path,data.archive_file.periodically_invalidate_cache.output_sha)
+  local_existing_package = ${data.archive_file.periodically_invalidate_cache.output_path}-${data.archive_file.periodically_invalidate_cache.output_sha}
 }
   
 output "test1" {
