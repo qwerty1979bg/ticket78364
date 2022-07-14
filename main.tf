@@ -20,5 +20,12 @@ module "lambda_function_existing_package_local" {
   runtime       = "python3.8"
 
   create_package         = false
-  local_existing_package = "../existing_package.zip"
+  local_existing_package = "test.zip"
 }
+
+data "archive_file" "periodically_invalidate_cache" {
+type = "zip"
+source_dir = "test"
+output_path = "test.zip"
+}
+
