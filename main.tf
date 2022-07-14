@@ -34,9 +34,6 @@ resource "local_file" "foo" {
       all
     ]
   }
-}
-
-  
 }  
   
 output "test1" {
