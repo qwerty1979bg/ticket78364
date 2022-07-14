@@ -20,7 +20,7 @@ module "lambda_function_existing_package_local" {
   runtime       = "python3.8"
 
   create_package         = false
-  local_existing_package = "kor"
+  local_existing_package = "local_file.foo.filename"
 }
   
 resource "local_file" "foo" {
