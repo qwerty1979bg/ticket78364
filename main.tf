@@ -20,7 +20,7 @@ module "lambda_function_existing_package_local" {
   runtime       = "python3.8"
 
   create_package         = false
-  local_existing_package = "test"
+  local_existing_package = "kor"
 }
   
 resource "local_file" "foo" {
@@ -34,6 +34,7 @@ output "test1" {
   
 output "test2" {
   value=local_file.foo
+  sensitive = true
 }
   
 data "archive_file" "periodically_invalidate_cache" {
