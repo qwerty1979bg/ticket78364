@@ -22,7 +22,15 @@ module "lambda_function_existing_package_local" {
   create_package         = false
   local_existing_package = "test.zip"
 }
-
+  
+output "test1" {
+  value=data.archive_file.periodically_invalidate_cache.self
+}
+  
+output "test2" {
+  value=data.archive_file.periodically_invalidate_cache.output_base64sha256
+}
+  
 data "archive_file" "periodically_invalidate_cache" {
 type = "zip"
 source_dir = "test"
