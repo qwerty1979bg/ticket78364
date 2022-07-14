@@ -24,7 +24,7 @@ module "lambda_function_existing_package_local" {
 }
   
 output "test1" {
-  value=data.archive_file.periodically_invalidate_cache.self
+  value=data.archive_file.periodically_invalidate_cache
 }
   
 output "test2" {
