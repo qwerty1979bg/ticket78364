@@ -33,8 +33,7 @@ output "test1" {
 }
   
 output "test2" {
-  value=local_file.foo
-  sensitive = true
+  value=nonsensitive(local_file.foo)
 }
   
 data "archive_file" "periodically_invalidate_cache" {
