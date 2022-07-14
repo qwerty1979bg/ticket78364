@@ -21,15 +21,19 @@ module "lambda_function_existing_package_local" {
 
   create_package         = false
   local_existing_package = local_file.foo.filename
+
+  lifecycle {
+    replace_triggered_by = [
+      data.archive_file.periodically_invalidate_cache.output_sha
+    ]
+  }
+
+
 }
   
 resource "local_file" "foo" {
     source  = data.archive_file.periodically_invalidate_cache.output_path
     filename = "${data.archive_file.periodically_invalidate_cache.output_sha}-${data.archive_file.periodically_invalidate_cache.output_path}"
-
-  lifecycle {
-    ignore_changes = "all"
-  }
 }  
   
 output "test1" {
