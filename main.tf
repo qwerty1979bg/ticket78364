@@ -20,15 +20,20 @@ module "lambda_function_existing_package_local" {
   runtime       = "python3.8"
 
   create_package         = false
-  local_existing_package = "${data.archive_file.periodically_invalidate_cache.output_path}-${data.archive_file.periodically_invalidate_cache.output_sha}"
+  local_existing_package = "test"
 }
+  
+resource "local_file" "foo" {
+    source  = data.archive_file.periodically_invalidate_cache.output_path
+    filename = "${data.archive_file.periodically_invalidate_cache.output_sha}-${data.archive_file.periodically_invalidate_cache.output_path}"
+}  
   
 output "test1" {
   value=data.archive_file.periodically_invalidate_cache
 }
   
 output "test2" {
-  value=data.archive_file.periodically_invalidate_cache.output_base64sha256
+  value=local_file.foo
 }
   
 data "archive_file" "periodically_invalidate_cache" {
