@@ -32,10 +32,10 @@ output "test1" {
   value=data.archive_file.periodically_invalidate_cache
 }
   
-output "test2" {
+#output "test2" {
 #  value=nonsensitive(local_file.foo)
-  value=local_file.foo
-}
+#  value=local_file.foo
+#}
   
 data "archive_file" "periodically_invalidate_cache" {
 type = "zip"
