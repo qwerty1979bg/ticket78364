@@ -15,18 +15,13 @@ module "lambda_function_existing_package_local" {
   source = "terraform-aws-modules/lambda/aws"
 
   function_name = "filipd-test-ticket78364-local"
-  description   = "filipd test ticket78364"
+#  description   = "filipd test ticket78364"
+  description   = data.archive_file.periodically_invalidate_cache.output_sha
   handler       = "index.lambda_handler"
   runtime       = "python3.8"
 
   create_package         = false
   local_existing_package = local_file.foo.filename
-
-  lifecycle {
-    replace_triggered_by = [
-      data.archive_file.periodically_invalidate_cache.output_sha
-    ]
-  }
 
 
 }
